@@ -150,7 +150,11 @@ def hashavoa(update, context):
 def search_menu(update, context):
     """
     custom search for specific program in next 7 days
+    support both inline args and conversation response
     """
+    if context.args:
+        respond(update, list(range(0, 7)), query=' '.join(context.args))
+        return ConversationHandler.END
     update.message.reply_text('מה אתה רוצה לחפש נו?')
     return 0
 
